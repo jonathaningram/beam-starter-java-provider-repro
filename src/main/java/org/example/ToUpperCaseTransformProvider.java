@@ -113,7 +113,7 @@ public class ToUpperCaseTransformProvider
       this.configuration = configuration;
     }
 
-    private DoFn<Row, Row> createDoFn(String field, boolean handleErrors, Schema errorSchema) {
+    private static DoFn<Row, Row> createDoFn(String field, boolean handleErrors, Schema errorSchema) {
       return new DoFn<Row, Row>() {
         @ProcessElement
         public void processElement(@Element Row inputRow, MultiOutputReceiver out) {

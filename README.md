@@ -15,10 +15,10 @@
       * [outputCollectionNames()](#outputcollectionnames)
       * [from()](#from)
       * [description()](#description)
-    * [Configuration Class](#configuration-class)
+    * [ToUpperCaseProvider Configuration Class](#touppercaseprovider-configuration-class)
       * [Error Handling](#error-handling)
       * [Validation](#validation)
-    * [SchemaTransform Class](#schematransform-class)
+    * [ToUpperCaseProvider SchemaTransform Class](#touppercaseprovider-schematransform-class)
   * [Building the Transform Catalog JAR](#building-the-transform-catalog-jar)
   * [Defining the Transform in Beam YAML](#defining-the-transform-in-beam-yaml)
 <!-- TOC -->
@@ -105,7 +105,8 @@ allowing us to focus on the transform functionality itself.
 
 
 ### SchemaTransformProvider Skeleton Code
-[//]: # (TODO - Add skeleton code)
+
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L1-L96
 
 This is the bare minimum code (excluding import and package) to create a `SchemaTransformProvider` that can be used by
 the cross-language framework, and therefore allowing the `SchemaTransform` defined within it to be defined in any
@@ -117,7 +118,7 @@ Let’s start by breaking down the top-level methods that are required to be com
 
 
 #### configurationClass()
-[//]: # (TODO - Add skeleton code)
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L27-L30
 
 The <code>[configurationClass()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#configurationSchema--)</code>
@@ -126,7 +127,7 @@ the Transform. The <code>Configuration</code> class we defined in the skeleton c
 
 
 #### identifier()
-[//]: # (TODO - Add skeleton code)
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L32-L35
 
 The <code>[identifier()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#identifier--)</code>
@@ -136,7 +137,7 @@ are defined in a custom catalog such as this.
 
 
 #### inputCollectionNames()
-[//]: # (TODO - Add skeleton code)
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L42-L45
 
 The <code>[inputCollectionNames()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#inputCollectionNames--)</code>
@@ -148,7 +149,7 @@ the macros defined at the top of the file.
 
 
 #### outputCollectionNames()
-[//]: # (TODO - Add skeleton code)
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L47-L50
 
 The <code>[outputCollectionNames()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#outputCollectionNames--)</code>
@@ -161,7 +162,7 @@ the macros defined at the top of the file.
 
 
 #### from()
-[//]: # (TODO - Add skeleton code)
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L52-L55
 
 The <code>[from()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#from-org.apache.beam.sdk.values.Row-)</code>
@@ -177,7 +178,7 @@ which defines the expansion of the transform and includes the
 <code>[DoFn](https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/transforms/DoFn.html)</code>.
 
 #### description()
-[//]: # (TODO - Add skeleton code)
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L37-L40
 
 The *optional* <code>[description()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#description–)</code>
@@ -189,8 +190,9 @@ script. This is useful when generating docs for a transform catalog. For example
 
 
 
-### Configuration Class
-[//]: # (TODO - Add ToUpperCase code)
+### ToUpperCaseProvider Configuration Class
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/ToUpperCaseTransformProvider.java#L72-L100
+
 The `Configuration` class is responsible for defining the parameters to the transform. This
 <code>[AutoValue](https://github.com/google/auto/tree/main/value)</code> class is annotated with the
 <code>[AutoValueSchema](
@@ -237,14 +239,14 @@ attempting to modify this field. This method can also be useful for checking dep
 required *if* parameter B is specified).
 
 
-### SchemaTransform Class
-[//]: # (TODO - Add ToUpperCase code)
+### ToUpperCaseProvider SchemaTransform Class
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/ToUpperCaseTransformProvider.java#L102-L179
 
 This is the class that will define the actual transform that is performed on the incoming
 <code>[PCollection](https://beam.apache.org/documentation/programming-guide/#pcollections)</code>. Let’s first take a
 look at the <code>expand()</code> function.
 
-[//]: # (TODO - Add ToUpperCase expand code)
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/ToUpperCaseTransformProvider.java#L141-L177
 
 Every incoming
 <code>[PCollectionRowTuple](
@@ -260,7 +262,7 @@ essentially wraps the original schema with a couple error-specific fields as def
 <code>[errorSchema](
 https://github.com/apache/beam/blob/f4d03d49713cf89260c141ee35b4dadb31ad4193/sdks/java/core/src/main/java/org/apache/beam/sdk/schemas/transforms/providers/ErrorHandling.java#L50-L54)</code>.
 
-Whether or not to do <code>[error_handling](https://beam.apache.org/documentation/sdks/yaml-errors/)</code> is
+Whether to do <code>[error_handling](https://beam.apache.org/documentation/sdks/yaml-errors/)</code> is
 determined by the [ErrorHandling](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/providers/ErrorHandling.html)
 class. If error handling is specified in the config of the transform in the Beam YAML pipeline, then exceptions will be
@@ -281,7 +283,7 @@ Finally, the resulting `PCollectionRowTuple` must be constructed. The successful
 the same `PCollectionRowTuple `and tagged according to the output specified by the `error_handling `config in the
 Beam YAML pipeline.
 
-[//]: # (TODO - Add ToUpperCase createDoFn code)
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/ToUpperCaseTransformProvider.java#L116-L139
 
 Now, taking a look at the `createDoFn()` method that is responsible for constructing and returning the actual
 <code>[DoFn](https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/transforms/DoFn.html)</code>,
@@ -308,7 +310,7 @@ This will create a JAR under `target` called `xlang-transforms-bundled-1.0-SNAPS
 service is what will be invoked by the Beam YAML SDK to import the transform schema and run the expansion service for
 the transform.
 
-[//]: # (TODO - Add maven-shade-plugin code)
+https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/pom.xml#L83-L85
 **Note:** The name of the jar is configurable using the `finalName` tag in the `maven-shade-plugin` configuration.
 
 ## Defining the Transform in Beam YAML
@@ -318,19 +320,81 @@ pipeline. This is done using <code>[providers](https://beam.apache.org/documenta
 these providers allow one to define a suite of transforms in a given JAR or python package that can be used within the
 Beam YAML pipeline.
 
+We will be utilizing the `renaming` provider as that allows us to map the Java transform parameters that use Java naming 
+convention to parameters that follow the YAML naming convention. This is especially useful for the `ErrorHandling` 
+parameter as that is used extensively in the built-in Beam YAML transforms.
+
 For our example, that looks as follows:
 ```yaml
 providers:
-  - type: javaJar
-    config:
-      jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
+  - type: renaming
     transforms:
-       ToUpperCase: "some:urn:to_upper_case:v1"
+      'ToUpperCase': 'ToUpperCase'
+    config:
+      mappings:
+        'ToUpperCase':
+          error_handling: 'errorHandling'
+        'Identity':
+      underlying_provider:
+        type: javaJar
+        config:
+          jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
+        transforms:
+          ToUpperCase: "some:urn:to_upper_case:v1"
+          Identity: "some:urn:transform_name:v1"
 ```
+More robust examples of the `renaming` provider can be found [here](
+https://github.com/apache/beam/blob/master/sdks/python/apache_beam/yaml/standard_providers.yaml).
 
 Now, `ToUpperCase` can be defined as a transform in the Beam YAML pipeline with the single config parameter - `field`.
 
 A full example:
+```yaml
+pipeline:
+  type: chain
+  transforms:
+    - type: Create
+      config:
+        elements:
+          - name: "john"
+            id: 1
+          - name: "jane"
+            id: 2
+    - type: Identity
+    - type: ToUpperCase
+      config:
+        field: "name"
+    - type: LogForTesting
+      
+providers:
+  - type: renaming
+    transforms:
+      'ToUpperCase': 'ToUpperCase'
+    config:
+      mappings:
+        'ToUpperCase':
+          error_handling: 'errorHandling'
+        'Identity':
+      underlying_provider:
+        type: javaJar
+        config:
+          jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
+        transforms:
+          ToUpperCase: "some:urn:to_upper_case:v1"
+          Identity: "some:urn:transform_name:v1"
+```
+
+Expected logs:
+```
+message: "{\"name\":\"JOHN\",\"id\":1}"
+message: "{\"name\":\"JANE\",\"id\":2}"
+```
+
+**Note**: Beam YAML will choose the Java implementation of the `LogForTesting` transform to reduce language switching.
+The output can get a bit crowded, but look for the logs in the commented “Expected” section at the bottom of the YAML
+file.
+
+An example with errors caught and handled:
 ```yaml
 pipeline:
   transforms:
@@ -344,23 +408,26 @@ pipeline:
     - type: ToUpperCase
       input: Create
       config:
-        field: "name"
+        field: "unknown"
+        error_handling:
+          output: errors
     - type: LogForTesting
       input: ToUpperCase
+    - type: LogForTesting
+      input: ToUpperCase.errors
+      
 providers:
-  - type: javaJar
-    config:
-      jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
+  - type: renaming
     transforms:
-       ToUpperCase: "some:urn:to_upper_case:v1"
+      'ToUpperCase': 'ToUpperCase'
+    config:
+      mappings:
+        'ToUpperCase':
+          error_handling: 'errorHandling'
+      underlying_provider:
+        type: javaJar
+        config:
+          jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
+        transforms:
+          ToUpperCase: "some:urn:to_upper_case:v1"
 ```
-
-Expected logs:
-```
-message: "{\"name\":\"JOHN\",\"id\":1}"
-message: "{\"name\":\"JANE\",\"id\":2}"
-```
-
-**Note**: Beam YAML will choose the Java implementation of the `LogForTesting` transform to reduce language switching.
-The output can get a bit crowded, but look for the logs in the commented “Expected” section at the bottom of the YAML
-file.
