@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <beam.version>2.54.0</beam.version>
         <autovalue.version>1.10.4</autovalue.version>
-        <autovalue.service.version>1.0-rc6</autovalue.service.version>
+        <autovalue.service.version>1.0</autovalue.service.version>
         <maven-shade-plugin.version>3.1.0</maven-shade-plugin.version>
     </properties>
 
@@ -44,11 +44,13 @@
             <artifactId>beam-sdks-java-expansion-service</artifactId>
             <version>${beam.version}</version>
         </dependency>
+        <!-- AutoValue dependencies-->
         <dependency>
             <groupId>com.google.auto.value</groupId>
             <artifactId>auto-value</artifactId>
             <version>${autovalue.version}</version>
         </dependency>
+        <!-- Auto service used for expansion service-->
         <dependency>
             <groupId>com.google.auto.service</groupId>
             <artifactId>auto-service</artifactId>
