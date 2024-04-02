@@ -310,7 +310,7 @@ This will create a JAR under `target` called `xlang-transforms-bundled-1.0-SNAPS
 service is what will be invoked by the Beam YAML SDK to import the transform schema and run the expansion service for
 the transform.
 
-https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/pom.xml#L83-L85
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/pom.xml#L85-L87
 **Note:** The name of the jar is configurable using the `finalName` tag in the `maven-shade-plugin` configuration.
 
 ## Defining the Transform in Beam YAML
