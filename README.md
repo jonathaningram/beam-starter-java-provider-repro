@@ -106,7 +106,7 @@ allowing us to focus on the transform functionality itself.
 
 ### SchemaTransformProvider Skeleton Code
 
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L1-L96
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/SkeletonSchemaProvider.java#L1-L96
 
 This is the bare minimum code (excluding import and package) to create a `SchemaTransformProvider` that can be used by
 the cross-language framework, and therefore allowing the `SchemaTransform` defined within it to be defined in any
@@ -118,7 +118,7 @@ Let’s start by breaking down the top-level methods that are required to be com
 
 
 #### configurationClass()
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L27-L30
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/SkeletonSchemaProvider.java#L27-L30
 
 The <code>[configurationClass()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#configurationSchema--)</code>
@@ -127,7 +127,7 @@ the Transform. The <code>Configuration</code> class we defined in the skeleton c
 
 
 #### identifier()
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L32-L35
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/SkeletonSchemaProvider.java#L32-L35
 
 The <code>[identifier()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#identifier--)</code>
@@ -137,7 +137,7 @@ are defined in a custom catalog such as this.
 
 
 #### inputCollectionNames()
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L42-L45
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/SkeletonSchemaProvider.java#L42-L45
 
 The <code>[inputCollectionNames()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#inputCollectionNames--)</code>
@@ -149,7 +149,7 @@ the macros defined at the top of the file.
 
 
 #### outputCollectionNames()
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L47-L50
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/SkeletonSchemaProvider.java#L47-L50
 
 The <code>[outputCollectionNames()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#outputCollectionNames--)</code>
@@ -162,7 +162,7 @@ the macros defined at the top of the file.
 
 
 #### from()
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L52-L55
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/SkeletonSchemaProvider.java#L52-L55
 
 The <code>[from()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#from-org.apache.beam.sdk.values.Row-)</code>
@@ -178,7 +178,7 @@ which defines the expansion of the transform and includes the
 <code>[DoFn](https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/transforms/DoFn.html)</code>.
 
 #### description()
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/SkeletonSchemaProvider.java#L37-L40
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/SkeletonSchemaProvider.java#L37-L40
 
 The *optional* <code>[description()](
 https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html#description–)</code>
@@ -191,7 +191,7 @@ script. This is useful when generating docs for a transform catalog. For example
 
 
 ### ToUpperCaseProvider Configuration Class
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/ToUpperCaseTransformProvider.java#L72-L100
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/ToUpperCaseTransformProvider.java#L72-L100
 
 The `Configuration` class is responsible for defining the parameters to the transform. This
 <code>[AutoValue](https://github.com/google/auto/tree/main/value)</code> class is annotated with the
@@ -240,13 +240,13 @@ required *if* parameter B is specified).
 
 
 ### ToUpperCaseProvider SchemaTransform Class
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/ToUpperCaseTransformProvider.java#L102-L179
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/ToUpperCaseTransformProvider.java#L102-L179
 
 This is the class that will define the actual transform that is performed on the incoming
 <code>[PCollection](https://beam.apache.org/documentation/programming-guide/#pcollections)</code>. Let’s first take a
 look at the <code>expand()</code> function.
 
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/ToUpperCaseTransformProvider.java#L141-L177
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/ToUpperCaseTransformProvider.java#L141-L177
 
 Every incoming
 <code>[PCollectionRowTuple](
@@ -283,7 +283,7 @@ Finally, the resulting `PCollectionRowTuple` must be constructed. The successful
 the same `PCollectionRowTuple `and tagged according to the output specified by the `error_handling `config in the
 Beam YAML pipeline.
 
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/src/main/java/org/example/ToUpperCaseTransformProvider.java#L116-L139
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/ToUpperCaseTransformProvider.java#L116-L139
 
 Now, taking a look at the `createDoFn()` method that is responsible for constructing and returning the actual
 <code>[DoFn](https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/transforms/DoFn.html)</code>,
@@ -310,7 +310,7 @@ This will create a JAR under `target` called `xlang-transforms-bundled-1.0-SNAPS
 service is what will be invoked by the Beam YAML SDK to import the transform schema and run the expansion service for
 the transform.
 
-https://github.com/Polber/beam-yaml-xlang/blob/b0806b7ed4f12b30834430d53ee8f57ef3dd3962/pom.xml#L83-L85
+https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/pom.xml#L83-L85
 **Note:** The name of the jar is configurable using the `finalName` tag in the `maven-shade-plugin` configuration.
 
 ## Defining the Transform in Beam YAML
