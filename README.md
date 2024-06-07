@@ -43,6 +43,20 @@ As we walk through these concepts, we will be constructing a Transform called `T
 parameter `field`, which represents a field in the collection of elements, and modify that field by converting the
 string to uppercase.
 
+There are four main steps to follow:
+
+1. Define the transformation itself as a
+   [PTransform](https://beam.apache.org/documentation/programming-guide/#composite-transforms)
+   that consumes and produces any number of schema'd PCollections.
+2. Expose this transform via a
+   [SchemaTransformProvider](https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/schemas/transforms/SchemaTransformProvider.html)
+   which provides an identifier used to refer to this transform later as well
+   as metadata like a human-readable description and its configuration parameters.
+3. Build a Jar that contains these classes and vends them via the
+   [Service Loader](https://github.com/Polber/beam-yaml-xlang/blob/95abf0864e313232a89f3c9e57b950d0fb478979/src/main/java/org/example/ToUpperCaseTransformProvider.java#L30)
+   infrastructure.
+4. Write a [provider specification](https://beam.apache.org/documentation/sdks/yaml/#providers)
+   that tells Beam YAML where to find this jar and what it contains.
 
 ## Project Structure
 
@@ -186,7 +200,7 @@ method is where a description of the transform can be written. This description 
 framework, but is useful for generating docs when used in conjunction with the
 [generate_yaml_docs.py](https://github.com/apache/beam/blob/master/sdks/python/apache_beam/yaml/generate_yaml_docs.py)
 script. This is useful when generating docs for a transform catalog. For example, the
-[Beam YAML transform glossary](https://gist.github.com/robertwb/64e2f51ff88320eeb6ffd96634202df7).
+[Beam YAML transform glossary](https://beam.apache.org/releases/yamldoc/current/).
 
 
 
@@ -214,7 +228,7 @@ The `@SchemaFieldDescription` annotation can also be optionally used to define t
 the Beam YAML framework and can be used in conjunction with the
 [generate_yaml_docs.py](https://github.com/apache/beam/blob/master/sdks/python/apache_beam/yaml/generate_yaml_docs.py)
 script to generate docs for the transform. This is useful when generating docs for a transform catalog. For example,
-the [Beam YAML transform glossary](https://gist.github.com/robertwb/64e2f51ff88320eeb6ffd96634202df7).
+the [Beam YAML transform glossary](https://beam.apache.org/releases/yamldoc/current/).
 
 
 #### Error Handling
@@ -320,8 +334,8 @@ pipeline. This is done using <code>[providers](https://beam.apache.org/documenta
 these providers allow one to define a suite of transforms in a given JAR or python package that can be used within the
 Beam YAML pipeline.
 
-We will be utilizing the `renaming` provider as that allows us to map the Java transform parameters that use Java naming 
-convention to parameters that follow the YAML naming convention. This is especially useful for the `ErrorHandling` 
+We will be utilizing the `renaming` provider as that allows us to map the Java transform parameters that use Java naming
+convention to parameters that follow the YAML naming convention. This is especially useful for the `ErrorHandling`
 parameter as that is used extensively in the built-in Beam YAML transforms.
 
 For our example, that looks as follows:
@@ -365,7 +379,7 @@ pipeline:
       config:
         field: "name"
     - type: LogForTesting
-      
+
 providers:
   - type: renaming
     transforms:
@@ -415,7 +429,7 @@ pipeline:
       input: ToUpperCase
     - type: LogForTesting
       input: ToUpperCase.errors
-      
+
 providers:
   - type: renaming
     transforms:
@@ -431,3 +445,19 @@ providers:
         transforms:
           ToUpperCase: "some:urn:to_upper_case:v1"
 ```
+
+If you have Beam Python installed, you can test this pipeline out locally with
+
+```
+python -m apache_beam.yaml.main --yaml_pipeline_file=pipeline.yaml
+```
+
+or if you have gcloud installed you can run this on dataflow with
+
+```
+gcloud dataflow yaml run $JOB_NAME --yaml-pipeline-file=pipeline.yaml --region=$REGION
+```
+
+(Note in this case you will need to upload your jar to a gcs bucket or
+publish it elsewhere as a globally-accessible URL so it is available to
+the dataflow service.)
