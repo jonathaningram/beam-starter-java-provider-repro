@@ -376,21 +376,12 @@ pipeline:
     - type: LogForTesting
 
 providers:
-  - type: renaming
-    transforms:
-      'ToUpperCase': 'ToUpperCase'
+  - type: javaJar
     config:
-      mappings:
-        'ToUpperCase':
-          error_handling: 'errorHandling'
-        'Identity':
-      underlying_provider:
-        type: javaJar
-        config:
-          jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
-        transforms:
-          ToUpperCase: "some:urn:to_upper_case:v1"
-          Identity: "some:urn:transform_name:v1"
+      jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
+    transforms:
+      ToUpperCase: "some:urn:to_upper_case:v1"
+      Identity: "some:urn:transform_name:v1"
 ```
 
 Expected logs:
@@ -426,19 +417,12 @@ pipeline:
       input: ToUpperCase.errors
 
 providers:
-  - type: renaming
-    transforms:
-      'ToUpperCase': 'ToUpperCase'
+  - type: javaJar
     config:
-      mappings:
-        'ToUpperCase':
-          error_handling: 'errorHandling'
-      underlying_provider:
-        type: javaJar
-        config:
-          jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
-        transforms:
-          ToUpperCase: "some:urn:to_upper_case:v1"
+      jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
+    transforms:
+      ToUpperCase: "some:urn:to_upper_case:v1"
+      Identity: "some:urn:transform_name:v1"
 ```
 
 If you have Beam Python installed, you can test this pipeline out locally with
