@@ -334,29 +334,24 @@ pipeline. This is done using <code>[providers](https://beam.apache.org/documenta
 these providers allow one to define a suite of transforms in a given JAR or python package that can be used within the
 Beam YAML pipeline.
 
-We will be utilizing the `renaming` provider as that allows us to map the Java transform parameters that use Java naming
-convention to parameters that follow the YAML naming convention. This is especially useful for the `ErrorHandling`
-parameter as that is used extensively in the built-in Beam YAML transforms.
+We will be utilizing the `javaJar` provider as we are planning to keep the names of the config parameters as they are defined in the transform.
 
 For our example, that looks as follows:
 ```yaml
 providers:
-  - type: renaming
-    transforms:
-      'ToUpperCase': 'ToUpperCase'
+  - type: javaJar
     config:
-      mappings:
-        'ToUpperCase':
-          error_handling: 'errorHandling'
-        'Identity':
-      underlying_provider:
-        type: javaJar
-        config:
-          jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
-        transforms:
-          ToUpperCase: "some:urn:to_upper_case:v1"
-          Identity: "some:urn:transform_name:v1"
+      jar: xlang-transforms-bundled-1.0-SNAPSHOT.jar
+    transforms:
+      ToUpperCase: "some:urn:to_upper_case:v1"
+      Identity: "some:urn:transform_name:v1"
 ```
+
+For transforms where one might want to rename the config parameters, the `renaming` provider allows us to map the transform
+parameters to alias names. Otherwise the config parameters will inherit the same name that is defined in Java, with camelCase
+being converted to snake_case. For example, errorHandling will be called `error_handling` in the YAML config. If there was a 
+parameter `table_spec`, and we wanted to call in `table` in the YAML config. We could use the `renaming` provider to map the alias.
+
 More robust examples of the `renaming` provider can be found [here](
 https://github.com/apache/beam/blob/master/sdks/python/apache_beam/yaml/standard_providers.yaml).
 
