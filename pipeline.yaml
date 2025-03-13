@@ -1,0 +1,30 @@
+pipeline:
+  type: chain
+
+  source:
+    type: Create
+    config:
+      elements:
+        - display_name: "name 1"
+        - display_name: "name 2"
+
+  transforms:
+    - type: Identity
+    - type: ToUpperCase
+      config:
+        field: "display_name"
+
+  sink:
+    type: LogForTesting
+
+options:
+  streaming: true
+  dataflow_service_options: [streaming_mode_at_least_once]
+
+providers:
+  - type: javaJar
+    config:
+      jar: "https://storage.googleapis.com/beam-starter-java-provider-repro/beam-2.63.0/xlang-transforms-bundled-1.0-SNAPSHOT.jar"
+    transforms:
+      ToUpperCase: "some:urn:to_upper_case:v1"
+      Identity: "some:urn:transform_name:v1"

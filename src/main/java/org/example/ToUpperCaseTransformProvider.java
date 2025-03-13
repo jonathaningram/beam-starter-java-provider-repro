@@ -73,9 +73,8 @@ public class ToUpperCaseTransformProvider
   @AutoValue
   public abstract static class Configuration implements Serializable {
 
-    @SchemaFieldDescription(
-        "The field in the input collection to perform the uppercase operation on. "
-            + "This field must be a String.")
+    @SchemaFieldDescription("The field in the input collection to perform the uppercase operation on. "
+        + "This field must be a String.")
     public abstract String getField();
 
     @Nullable
@@ -101,8 +100,10 @@ public class ToUpperCaseTransformProvider
 
   protected static class ToUpperCaseTransform extends SchemaTransform {
 
-    private static final TupleTag<Row> successValues = new TupleTag<Row>() {};
-    private static final TupleTag<Row> errorValues = new TupleTag<Row>() {};
+    private static final TupleTag<Row> successValues = new TupleTag<Row>() {
+    };
+    private static final TupleTag<Row> errorValues = new TupleTag<Row>() {
+    };
 
     private final Configuration configuration;
 
@@ -119,11 +120,10 @@ public class ToUpperCaseTransformProvider
         public void processElement(@Element Row inputRow, MultiOutputReceiver out) {
           try {
             // Apply toUpperCase() to given field and tag successful records
-            Row output =
-                Row.fromRow(inputRow)
-                    .withFieldValue(
-                        field, Objects.requireNonNull(inputRow.getString(field)).toUpperCase())
-                    .build();
+            Row output = Row.fromRow(inputRow)
+                .withFieldValue(
+                    field, Objects.requireNonNull(inputRow.getString(field)).toUpperCase())
+                .build();
             out.get(successValues).output(output);
           } catch (Exception e) {
             if (handleErrors) {
@@ -151,11 +151,10 @@ public class ToUpperCaseTransformProvider
       boolean handleErrors = ErrorHandling.hasOutput(configuration.getErrorHandling());
 
       // Apply the PTransform
-      PCollectionTuple output =
-          inputRows.apply(
-              "ToUpperCase",
-              ParDo.of(createDoFn(configuration.getField(), handleErrors, errorSchema))
-                  .withOutputTags(successValues, TupleTagList.of(errorValues)));
+      PCollectionTuple output = inputRows.apply(
+          "ToUpperCase",
+          ParDo.of(createDoFn(configuration.getField(), handleErrors, errorSchema))
+              .withOutputTags(successValues, TupleTagList.of(errorValues)));
 
       // Set the schemas for successful records and error records.
       // This is needed so runner can translate the element schema across SDK's
@@ -163,14 +162,12 @@ public class ToUpperCaseTransformProvider
       output.get(errorValues).setRowSchema(errorSchema);
 
       // Construct output collection and tag successful records
-      PCollectionRowTuple result =
-          PCollectionRowTuple.of(OUTPUT_ROWS_TAG, output.get(successValues));
+      PCollectionRowTuple result = PCollectionRowTuple.of(OUTPUT_ROWS_TAG, output.get(successValues));
       if (handleErrors) {
         // Add tagged error records to output collection if error_handling was specified
-        result =
-            result.and(
-                Objects.requireNonNull(configuration.getErrorHandling()).getOutput(),
-                output.get(errorValues));
+        result = result.and(
+            Objects.requireNonNull(configuration.getErrorHandling()).getOutput(),
+            output.get(errorValues));
       }
 
       return result;

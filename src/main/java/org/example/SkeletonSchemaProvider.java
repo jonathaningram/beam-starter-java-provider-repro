@@ -69,10 +69,9 @@ public class SkeletonSchemaProvider
       PCollection<Row> inputRows = input.get(INPUT_ROWS_TAG);
 
       // Apply the PTransform
-      PCollection<Row> outputRows =
-          inputRows
-              .apply("Identity", ParDo.of(new IdentityDoFn()))
-              .setRowSchema(inputRows.getSchema());
+      PCollection<Row> outputRows = inputRows
+          .apply("Identity", ParDo.of(new IdentityDoFn()))
+          .setRowSchema(inputRows.getSchema());
 
       // Construct output collection and tag successful records
       return PCollectionRowTuple.of(OUTPUT_ROWS_TAG, outputRows);
