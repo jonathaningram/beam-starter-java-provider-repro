@@ -9,17 +9,17 @@ run_pipeline_on_local.sh pipeline.yaml
 - Builds a Docker image with the Beam Python SDK and Java.
 - Runs `pipeline.yaml`.
 
-### ✅ Passes: Successfully uppercases the names
+### ❌ Fails with a Python error
 
 <details>
 <summary>Local output</summary>
 
 ```
 ./run_pipeline_on_local.sh pipeline.yaml
-[+] Building 2.7s (8/8) FINISHED                                                                                                                                                                                       docker:desktop-linux
+[+] Building 1.1s (8/8) FINISHED                                                                                                                                                                                       docker:desktop-linux
  => [internal] load build definition from Dockerfile                                                                                                                                                                                   0.0s
  => => transferring dockerfile: 201B                                                                                                                                                                                                   0.0s
- => [internal] load metadata for docker.io/apache/beam_python3.11_sdk:2.63.0                                                                                                                                                           2.6s
+ => [internal] load metadata for docker.io/apache/beam_python3.11_sdk:2.63.0                                                                                                                                                           1.0s
  => [internal] load .dockerignore                                                                                                                                                                                                      0.0s
  => => transferring context: 2B                                                                                                                                                                                                        0.0s
  => [1/4] FROM docker.io/apache/beam_python3.11_sdk:2.63.0@sha256:3bac3a5e99da7dbc608dc977e8f6981c032a10a7f6e8d11fb394d5ed593885c4                                                                                                     0.0s
@@ -33,234 +33,75 @@ run_pipeline_on_local.sh pipeline.yaml
 
 What's next:
     View a summary of image vulnerabilities and recommendations → docker scout quickview
-INFO:root:Missing pipeline option (runner). Executing pipeline using the default runner: DirectRunner.
-INFO:apache_beam.yaml.yaml_transform:Expanding "Create" at line 5
-INFO:apache_beam.yaml.yaml_transform:Expanding "Identity" at line 12
-INFO:apache_beam.utils.subprocess_server:Downloading job server jar from https://storage.googleapis.com/beam-starter-java-provider-repro/beam-2.63.0/xlang-transforms-bundled-1.0-SNAPSHOT.jar
-INFO:root:Starting a JAR-based expansion service from JAR /root/.apache_beam/cache/jars/xlang-transforms-bundled-1.0-SNAPSHOT.jar
-INFO:apache_beam.utils.subprocess_server:Starting service with ['java' '-jar' '/root/.apache_beam/cache/jars/xlang-transforms-bundled-1.0-SNAPSHOT.jar' '55249' '--filesToStage=/root/.apache_beam/cache/jars/xlang-transforms-bundled-1.0-SNAPSHOT.jar' '--alsoStartLoopbackWorker']
-INFO:apache_beam.utils.subprocess_server:Starting expansion service at localhost:55249
-INFO:apache_beam.utils.subprocess_server:[main] INFO org.apache.beam.sdk.expansion.service.ExpansionService - Registering external transforms: [beam:transform:group_into_batches:v1, beam:transform:group_into_batches_with_sharded_key:v1, beam:transform:combine_grouped_values:v1, beam:transform:create_view:v1, beam:transform:teststream:v1, beam:transform:sdf_process_keyed_elements:v1, beam:transform:combine_globally:v1, beam:external:java:generate_sequence:v1, beam:transform:redistribute_by_key:v1, beam:transform:window_into:v1, beam:transform:flatten:v1, beam:transform:impulse:v1, beam:transform:write_files:v1, beam:runners_core:transforms:splittable_process:v1, beam:transform:combine_per_key:v1, beam:transform:group_by_key:v1, beam:transform:redistribute_arbitrarily:v1, beam:transform:reshuffle:v1]
-INFO:apache_beam.utils.subprocess_server:
-INFO:apache_beam.utils.subprocess_server:Registered transforms:
-INFO:apache_beam.utils.subprocess_server:	beam:transform:group_into_batches:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@5f8e8a9d
-INFO:apache_beam.utils.subprocess_server:	beam:transform:group_into_batches_with_sharded_key:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@5745ca0e
-INFO:apache_beam.utils.subprocess_server:	beam:transform:combine_grouped_values:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@3ad83a66
-INFO:apache_beam.utils.subprocess_server:	beam:transform:create_view:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@3cce5371
-INFO:apache_beam.utils.subprocess_server:	beam:transform:teststream:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@17bffc17
-INFO:apache_beam.utils.subprocess_server:	beam:transform:sdf_process_keyed_elements:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@6e535154
-INFO:apache_beam.utils.subprocess_server:	beam:transform:combine_globally:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@15a34df2
-INFO:apache_beam.utils.subprocess_server:	beam:external:java:generate_sequence:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@5b38c1ec
-INFO:apache_beam.utils.subprocess_server:	beam:transform:redistribute_by_key:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@338fc1d8
-INFO:apache_beam.utils.subprocess_server:	beam:transform:window_into:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@4722ef0c
-INFO:apache_beam.utils.subprocess_server:	beam:transform:flatten:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@48e1f6c7
-INFO:apache_beam.utils.subprocess_server:	beam:transform:impulse:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@55cb6996
-INFO:apache_beam.utils.subprocess_server:	beam:transform:write_files:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@1807e3f6
-INFO:apache_beam.utils.subprocess_server:	beam:runners_core:transforms:splittable_process:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@480d3575
-INFO:apache_beam.utils.subprocess_server:	beam:transform:combine_per_key:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@f1da57d
-INFO:apache_beam.utils.subprocess_server:	beam:transform:group_by_key:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@194fad1
-INFO:apache_beam.utils.subprocess_server:	beam:transform:redistribute_arbitrarily:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@26abb146
-INFO:apache_beam.utils.subprocess_server:	beam:transform:reshuffle:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@72c8e7b
-INFO:apache_beam.utils.subprocess_server:
-INFO:apache_beam.utils.subprocess_server:Registered SchemaTransformProviders:
-INFO:apache_beam.utils.subprocess_server:	some:urn:transform_name:v1
-INFO:apache_beam.utils.subprocess_server:	some:urn:to_upper_case:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:filter-java:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:flatten:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:map_to_fields-java:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:window_into_strategy:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:generate_sequence:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:log_for_testing:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:explode:v1
-INFO:root:Starting a JAR-based expansion service from JAR /root/.apache_beam/cache/jars/xlang-transforms-bundled-1.0-SNAPSHOT.jar
-INFO:apache_beam.utils.subprocess_server:[grpc-default-executor-0] INFO org.apache.beam.sdk.expansion.service.ExpansionService - Expanding 'Identity/some:urn:transform_name:v1' with URN 'beam:expansion:payload:schematransform:v1'
-INFO:apache_beam.yaml.yaml_transform:Expanding "ToUpperCase" at line 13
-INFO:root:Starting a JAR-based expansion service from JAR /root/.apache_beam/cache/jars/xlang-transforms-bundled-1.0-SNAPSHOT.jar
-INFO:apache_beam.utils.subprocess_server:[grpc-default-executor-0] INFO org.apache.beam.sdk.expansion.service.ExpansionService - Expanding 'ToUpperCase/some:urn:to_upper_case:v1' with URN 'beam:expansion:payload:schematransform:v1'
-INFO:apache_beam.yaml.yaml_transform:Expanding "LogForTesting" at line 18
-INFO:apache_beam.utils.subprocess_server:Downloading job server jar from https://repo.maven.apache.org/maven2/org/apache/beam/beam-sdks-java-extensions-sql-expansion-service/2.63.0/beam-sdks-java-extensions-sql-expansion-service-2.63.0.jar
-INFO:root:Starting a JAR-based expansion service from JAR /root/.apache_beam/cache/jars/beam-sdks-java-extensions-sql-expansion-service-2.63.0.jar
-INFO:apache_beam.utils.subprocess_server:Starting service with ['java' '-jar' '/root/.apache_beam/cache/jars/beam-sdks-java-extensions-sql-expansion-service-2.63.0.jar' '35881' '--filesToStage=/root/.apache_beam/cache/jars/beam-sdks-java-extensions-sql-expansion-service-2.63.0.jar' '--alsoStartLoopbackWorker']
-INFO:apache_beam.utils.subprocess_server:Starting expansion service at localhost:35881
-INFO:apache_beam.utils.subprocess_server:Mar 19, 2025 4:24:41 AM org.apache.beam.sdk.expansion.service.ExpansionService loadRegisteredTransforms
-INFO:apache_beam.utils.subprocess_server:INFO: Registering external transforms: [beam:transform:org.apache.beam:spanner_insert_or_update:v1, beam:directrunner:transforms:test_stream:v1, beam:transform:org.apache.beam:pubsublite_write:v1, beam:transform:org.apache.beam:kafka_write:v1, beam:transform:combine_grouped_values:v1, beam:transform:combine_globally:v1, beam:external:java:generate_sequence:v1, beam:schematransform:org.apache.beam:bigquery_storage_read:v1, beam:transform:redistribute_by_key:v1, beam:directrunner:transforms:gabw:v1, beam:transform:window_into:v1, beam:transform:org.apache.beam:spanner_update:v1, beam:transform:org.apache.beam:pubsub_write:v1, beam:schematransform:org.apache.beam:kafka_read:v1, beam:schematransform:org.apache.beam:kafka_write:v1, beam:transform:combine_per_key:v1, beam:schematransform:org.apache.beam:bigquery_write:v1, beam:transform:org.apache.beam:kafka_read_with_metadata:v1, beam:transform:group_by_key:v1, beam:transform:pubsub_read:v1, beam:transform:org.apache.beam:spanner_delete:v1, beam:transform:group_into_batches:v1, beam:transform:org.apache.beam:spanner_read:v1, beam:transform:pubsub_write:v1, beam:transform:org.apache.beam:spanner_insert:v1, beam:transform:group_into_batches_with_sharded_key:v1, beam:transform:pubsub_write:v2, beam:transform:create_view:v1, beam:transform:teststream:v1, beam:transform:sdf_process_keyed_elements:v1, beam:transform:org.apache.beam:pubsub_read:v1, beam:external:java:sql:v1, beam:directrunner:transforms:write_view:v1, beam:transform:org.apache.beam:spanner_replace:v1, beam:directrunner:transforms:gbko:v1, beam:transform:org.apache.beam:pubsublite_read:v1, beam:transform:org.apache.beam:bigquery_write:v1, beam:transform:impulse:v1, beam:transform:flatten:v1, beam:transform:write_files:v1, beam:runners_core:transforms:splittable_process:v1, beam:directrunner:transforms:stateful_pardo:v1, beam:transform:org.apache.beam:bigquery_read:v1, beam:transform:org.apache.beam:kafka_read_without_metadata:v1, beam:transform:reshuffle:v1, beam:transform:redistribute_arbitrarily:v1]
-INFO:apache_beam.utils.subprocess_server:
-INFO:apache_beam.utils.subprocess_server:Registered transforms:
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:spanner_insert_or_update:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@22ffa91a
-INFO:apache_beam.utils.subprocess_server:	beam:directrunner:transforms:test_stream:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@74960bfa
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:pubsublite_write:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@42721fe
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:kafka_write:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@40844aab
-INFO:apache_beam.utils.subprocess_server:	beam:transform:combine_grouped_values:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@1f6c9cd8
-INFO:apache_beam.utils.subprocess_server:	beam:transform:combine_globally:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@5b619d14
-INFO:apache_beam.utils.subprocess_server:	beam:external:java:generate_sequence:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@66746f57
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:bigquery_storage_read:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@447a020
-INFO:apache_beam.utils.subprocess_server:	beam:transform:redistribute_by_key:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@7f36662c
-INFO:apache_beam.utils.subprocess_server:	beam:directrunner:transforms:gabw:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@28e8dde3
-INFO:apache_beam.utils.subprocess_server:	beam:transform:window_into:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@6d23017e
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:spanner_update:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@54dcfa5a
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:pubsub_write:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@1817f1eb
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:kafka_read:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@767e20cf
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:kafka_write:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@3a3e78f
-INFO:apache_beam.utils.subprocess_server:	beam:transform:combine_per_key:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@301ec38b
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:bigquery_write:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@17a1e4ca
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:kafka_read_with_metadata:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@10ded6a9
-INFO:apache_beam.utils.subprocess_server:	beam:transform:group_by_key:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@c5dc4a2
-INFO:apache_beam.utils.subprocess_server:	beam:transform:pubsub_read:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@4a194c39
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:spanner_delete:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@52066604
-INFO:apache_beam.utils.subprocess_server:	beam:transform:group_into_batches:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@340b9973
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:spanner_read:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@56113384
-INFO:apache_beam.utils.subprocess_server:	beam:transform:pubsub_write:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@5669c5fb
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:spanner_insert:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@373ebf74
-INFO:apache_beam.utils.subprocess_server:	beam:transform:group_into_batches_with_sharded_key:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@5f9678e1
-INFO:apache_beam.utils.subprocess_server:	beam:transform:pubsub_write:v2: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@c4ed84
-INFO:apache_beam.utils.subprocess_server:	beam:transform:create_view:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@189aa67a
-INFO:apache_beam.utils.subprocess_server:	beam:transform:teststream:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@5a9d6f02
-INFO:apache_beam.utils.subprocess_server:	beam:transform:sdf_process_keyed_elements:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@362045c0
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:pubsub_read:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@112f364d
-INFO:apache_beam.utils.subprocess_server:	beam:external:java:sql:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@5ccbeb64
-INFO:apache_beam.utils.subprocess_server:	beam:directrunner:transforms:write_view:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@6d9f7a80
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:spanner_replace:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@59252cb6
-INFO:apache_beam.utils.subprocess_server:	beam:directrunner:transforms:gbko:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@31d0e481
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:pubsublite_read:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@3243b914
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:bigquery_write:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@241e8ea6
-INFO:apache_beam.utils.subprocess_server:	beam:transform:impulse:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@542e560f
-INFO:apache_beam.utils.subprocess_server:	beam:transform:flatten:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@626c44e7
-INFO:apache_beam.utils.subprocess_server:	beam:transform:write_files:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@4dc8caa7
-INFO:apache_beam.utils.subprocess_server:	beam:runners_core:transforms:splittable_process:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@1d730606
-INFO:apache_beam.utils.subprocess_server:	beam:directrunner:transforms:stateful_pardo:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@3bcbb589
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:bigquery_read:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@3b00856b
-INFO:apache_beam.utils.subprocess_server:	beam:transform:org.apache.beam:kafka_read_without_metadata:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForBuilder@3016fd5e
-INFO:apache_beam.utils.subprocess_server:	beam:transform:reshuffle:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@35d08e6c
-INFO:apache_beam.utils.subprocess_server:	beam:transform:redistribute_arbitrarily:v1: org.apache.beam.sdk.expansion.service.ExpansionService$TransformProviderForPayloadTranslator@53d102a2
-INFO:apache_beam.utils.subprocess_server:
-INFO:apache_beam.utils.subprocess_server:Registered SchemaTransformProviders:
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:bigquery_fileloads:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:filter-java:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:flatten:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:spanner_cdc_read:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:map_to_fields-java:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:bigtable_write:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:spanner_write:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:log_for_testing:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:pubsublite_read:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:bigquery_storage_read:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:spanner_read:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:bigquery_export_read:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:kafka_read:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:kafka_write:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:bigquery_storage_write:v2
-INFO:apache_beam.utils.subprocess_server:	schematransform:org.apache.beam:sql_transform:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:pubsub_read:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:pubsub_write:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:window_into_strategy:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:bigtable_read:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:bigquery_write:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:pubsublite_write:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:generate_sequence:v1
-INFO:apache_beam.utils.subprocess_server:	beam:schematransform:org.apache.beam:yaml:explode:v1
-INFO:root:Starting a JAR-based expansion service from JAR /root/.apache_beam/cache/jars/beam-sdks-java-extensions-sql-expansion-service-2.63.0.jar
-INFO:apache_beam.utils.subprocess_server:Mar 19, 2025 4:24:41 AM org.apache.beam.sdk.expansion.service.ExpansionService expand
-INFO:apache_beam.utils.subprocess_server:INFO: Expanding 'LogForTesting/beam:schematransform:org.apache.beam:yaml:log_for_testing:v1' with URN 'beam:expansion:payload:schematransform:v1'
-INFO:apache_beam.runners.worker.statecache:Creating state cache with size 104857600
-INFO:apache_beam.runners.portability.fn_api_runner.worker_handlers:starting control server on port 36367
-INFO:apache_beam.runners.portability.fn_api_runner.worker_handlers:starting data server on port 43161
-INFO:apache_beam.runners.portability.fn_api_runner.worker_handlers:starting state server on port 33983
-INFO:apache_beam.runners.portability.fn_api_runner.worker_handlers:starting logging server on port 38047
-INFO:apache_beam.runners.portability.fn_api_runner.worker_handlers:Requesting worker at localhost:55249
-INFO:apache_beam.utils.subprocess_server:[grpc-default-executor-1] INFO org.apache.beam.fn.harness.ExternalWorkerService - Starting worker worker_1 pointing at fb93d15de829:36367.
-INFO:apache_beam.runners.portability.fn_api_runner.worker_handlers:Requesting worker at localhost:35881
-INFO:apache_beam.utils.subprocess_server:Mar 19, 2025 4:24:43 AM org.apache.beam.fn.harness.ExternalWorkerService startWorker
-INFO:apache_beam.utils.subprocess_server:INFO: Starting worker worker_2 pointing at fb93d15de829:36367.
-INFO:apache_beam.utils.subprocess_server:[SDK-worker-worker_1] INFO org.apache.beam.fn.harness.FnHarness - Fn Harness started
-INFO:apache_beam.utils.subprocess_server:[SDK-worker-worker_1] INFO org.apache.beam.fn.harness.FnHarness - Entering instruction processing loop
-INFO:root:severity: INFO
-timestamp {
-  seconds: 1742358284
-  nanos: 138000000
-}
-message: "Fn Harness started"
-log_location: "org.apache.beam.fn.harness.FnHarness"
-thread: "24"
+WARNING:apache_beam.io.gcp.gcsio:Unexpected error occurred when checking soft delete policy for gs://dataflow-staging-us-central1-b7772332242ab11a68b9a6dc24044799
+WARNING:apache_beam.io.gcp.gcsio:Unexpected error occurred when checking soft delete policy for gs://dataflow-staging-us-central1-b7772332242ab11a68b9a6dc24044799
+INFO:apache_beam.yaml.yaml_transform:Expanding "Create" at line 4
+INFO:apache_beam.yaml.yaml_transform:Expanding "Identity" at line 18
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 371, in create_ptransform
+    ptransform = provider.create_transform(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_provider.py", line 192, in create_transform
+    self._service = self._service()
+                    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_provider.py", line 328, in <lambda>
+    urns, lambda: external.JavaJarExpansionService(jar_provider()))
+                                                   ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_provider.py", line 260, in <lambda>
+    urns, lambda: _join_url_or_filepath(provider_base_path, jar))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_provider.py", line 1282, in _join_url_or_filepath
+    path_scheme = urllib.parse.urlparse(path, base_scheme).scheme
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/urllib/parse.py", line 395, in urlparse
+    splitresult = urlsplit(url, scheme, allow_fragments)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/urllib/parse.py", line 478, in urlsplit
+    scheme = scheme.strip(_WHATWG_C0_CONTROL_OR_SPACE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: a bytes-like object is required, not 'str'
 
-INFO:root:severity: INFO
-timestamp {
-  seconds: 1742358284
-  nanos: 176000000
-}
-message: "Running JvmInitializer#beforeProcessing for org.apache.beam.sdk.io.kafka.KafkaIOInitializer@1f957d9d"
-log_location: "org.apache.beam.sdk.fn.JvmInitializers"
-thread: "24"
+The above exception was the direct cause of the following exception:
 
-INFO:root:severity: INFO
-timestamp {
-  seconds: 1742358284
-  nanos: 176000000
-}
-message: "Completed JvmInitializer#beforeProcessing for org.apache.beam.sdk.io.kafka.KafkaIOInitializer@1f957d9d"
-log_location: "org.apache.beam.sdk.fn.JvmInitializers"
-thread: "24"
-
-INFO:root:severity: INFO
-timestamp {
-  seconds: 1742358284
-  nanos: 176000000
-}
-message: "Entering instruction processing loop"
-log_location: "org.apache.beam.fn.harness.FnHarness"
-thread: "24"
-
-ERROR:root:severity: ERROR
-timestamp {
-  seconds: 1742358284
-  nanos: 194000000
-}
-message: "*~*~*~ Previous channel ManagedChannelImpl{logId=9, target=fb93d15de829:36367} was garbage collected without being shut down! ~*~*~*\n    Make sure to call shutdown()/shutdownNow()"
-trace: "java.lang.RuntimeException: ManagedChannel allocation site\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.internal.ManagedChannelOrphanWrapper$ManagedChannelReference.<init>(ManagedChannelOrphanWrapper.java:102)\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.internal.ManagedChannelOrphanWrapper.<init>(ManagedChannelOrphanWrapper.java:60)\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.internal.ManagedChannelOrphanWrapper.<init>(ManagedChannelOrphanWrapper.java:51)\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.internal.ManagedChannelImplBuilder.build(ManagedChannelImplBuilder.java:710)\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.ForwardingChannelBuilder2.build(ForwardingChannelBuilder2.java:272)\n\tat org.apache.beam.sdk.fn.channel.ManagedChannelFactory.forDescriptor(ManagedChannelFactory.java:101)\n\tat org.apache.beam.fn.harness.ExternalWorkerService.startWorker(ExternalWorkerService.java:83)\n\tat org.apache.beam.model.fnexecution.v1.BeamFnExternalWorkerPoolGrpc$MethodHandlers.invoke(BeamFnExternalWorkerPoolGrpc.java:296)\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182)\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356)\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed.runInContext(ServerImpl.java:861)\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)\n\tat org.apache.beam.vendor.grpc.v1p69p0.io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
-instruction_id: "bundle_3"
-log_location: "org.apache.beam.vendor.grpc.v1p69p0.io.grpc.internal.ManagedChannelOrphanWrapper"
-thread: "35"
-
-INFO:root:severity: INFO
-timestamp {
-  seconds: 1742358284
-  nanos: 496000000
-}
-message: "{\"display_name\":\"NAME 1\"}"
-instruction_id: "bundle_4"
-transform_id: "LogForTesting/beam:schematransform:org.apache.beam:yaml:log_for_testing:v1/LogAsJson/ParMultiDo(Anonymous)"
-log_location: "org.apache.beam.sdk.schemas.transforms.providers.LoggingTransformProvider$LoggingTransform"
-thread: "34"
-
-INFO:root:severity: INFO
-timestamp {
-  seconds: 1742358284
-  nanos: 497000000
-}
-message: "{\"display_name\":\"NAME 2\"}"
-instruction_id: "bundle_4"
-transform_id: "LogForTesting/beam:schematransform:org.apache.beam:yaml:log_for_testing:v1/LogAsJson/ParMultiDo(Anonymous)"
-log_location: "org.apache.beam.sdk.schemas.transforms.providers.LoggingTransformProvider$LoggingTransform"
-thread: "34"
-
-INFO:apache_beam.utils.subprocess_server:[grpc-default-executor-1] INFO org.apache.beam.sdk.fn.data.BeamFnDataGrpcMultiplexer - Hanged up for url: "fb93d15de829:43161"
-INFO:apache_beam.utils.subprocess_server:.
-INFO:root:severity: INFO
-timestamp {
-  seconds: 1742358284
-  nanos: 509000000
-}
-message: "Hanged up for url: \"fb93d15de829:43161\"\n."
-log_location: "org.apache.beam.sdk.fn.data.BeamFnDataGrpcMultiplexer"
-thread: "18"
-
-INFO:apache_beam.utils.subprocess_server:[SDK-worker-worker_1] INFO org.apache.beam.fn.harness.FnHarness - Shutting SDK harness down.
-INFO:apache_beam.utils.subprocess_server:[SDK-worker-worker_1] INFO org.apache.beam.fn.harness.ExternalWorkerService - Successfully started worker worker_1.
-INFO:apache_beam.utils.subprocess_server:Mar 19, 2025 4:24:45 AM org.apache.beam.fn.harness.FnHarness main
-INFO:apache_beam.utils.subprocess_server:INFO: Shutting SDK harness down.
-INFO:apache_beam.utils.subprocess_server:Mar 19, 2025 4:24:45 AM org.apache.beam.fn.harness.ExternalWorkerService lambda$startWorker$0
-INFO:apache_beam.utils.subprocess_server:INFO: Successfully started worker worker_2.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/main.py", line 154, in <module>
+    run()
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/main.py", line 143, in run
+    yaml_transform.expand_pipeline(
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 1077, in expand_pipeline
+    providers or {})).expand(beam.pvalue.PBegin(pipeline))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 1042, in expand
+    result = expand_transform(
+             ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 442, in expand_transform
+    return expand_composite_transform(spec, scope)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 520, in expand_composite_transform
+    return CompositePTransform.expand(None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 508, in expand
+    inner_scope.compute_all()
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 196, in compute_all
+    self.compute_outputs(transform_id)
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 97, in wrapper
+    self._cache[key] = func(self, *args)
+                       ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 232, in compute_outputs
+    return expand_transform(self._transforms_by_uuid[transform_id], self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 444, in expand_transform
+    return expand_leaf_transform(spec, scope)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 466, in expand_leaf_transform
+    ptransform = scope.create_ptransform(spec, inputs_dict.values())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/apache_beam/yaml/yaml_transform.py", line 413, in create_ptransform
+    raise ValueError(
+ValueError: Invalid transform specification at "Identity" at line 18: a bytes-like object is required, not 'str'
 Building pipeline...
-Running pipeline...
 ```
 
 </details>

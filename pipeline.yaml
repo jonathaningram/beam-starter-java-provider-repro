@@ -20,6 +20,10 @@ pipeline:
 options:
   streaming: true
   dataflow_service_options: [streaming_mode_at_least_once]
+  project: "<TODO>"
+  region: "us-central1"
+  temp_location: "gs://<TODO>"
+  staging_location: "gs://<TODO>"
 
 providers:
   - type: javaJar

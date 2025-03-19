@@ -18,6 +18,7 @@ fi
 docker build -t beam_python3.11_sdk_with_java:2.63.0 .
 
 docker run -v "$(pwd):/app" \
+    -v ~/.config/gcloud:/root/.config/gcloud \
     -w /app \
     --entrypoint /bin/bash beam_python3.11_sdk_with_java:2.63.0 \
-    -c "python -m apache_beam.yaml.main --yaml_pipeline_file='$PIPELINE_FILE'"
+    -c "python -m apache_beam.yaml.main --yaml_pipeline='$(yq -o=json '.' "$PIPELINE_FILE")' --runner=DataflowRunner"
